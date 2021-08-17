@@ -19,6 +19,8 @@ import { TransactionErrorMessage } from "./TransactionErrorMessage";
 import { WaitingForTransactionMessage } from "./WaitingForTransactionMessage";
 import { NoTokensMessage } from "./NoTokensMessage";
 
+import { BatchTransfer } from "./BatchTransfer";
+
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
 // Here's a list of network ids https://docs.metamask.io/guide/ethereum-provider.html#properties
 // to use when deploying to other networks.
@@ -103,6 +105,7 @@ export class Dapp extends React.Component {
               </b>
               .
             </p>
+            <p> USDT: 0x7186deae06c885a64ac69dccec69994f2ee32984</p>
           </div>
         </div>
 
@@ -150,11 +153,23 @@ export class Dapp extends React.Component {
             {this.state.balance.gt(0) && (
               <Transfer
                 transferTokens={(to, amount) =>
-                  this._transferTokens(to, amount)
+                  this._transferTokens(to, amount + '000000000000000000')
                 }
                 tokenSymbol={this.state.tokenData.symbol}
               />
             )}
+
+                {/* { ======== pleX ======} */}
+            {this.state.balance.gt(0) && (
+              <BatchTransfer
+                transferTokens={(to, amount) =>
+                  this._transferTokens(to, amount + '000000000000000000')
+                }
+                tokenSymbol={this.state.tokenData.symbol}
+              />
+            )}
+
+
           </div>
         </div>
       </div>
