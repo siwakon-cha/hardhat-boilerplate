@@ -5,7 +5,7 @@ require("@nomiclabs/hardhat-waffle");
 // testing the frontend.
 require("./tasks/faucet");
 
-const { INFURA_API_KEY, mnemonic, privateKey1, privateKey2 } = require('./secrets.json');
+const { INFURA_API_KEY, mnemonic,KovanAcc1, privateKey1, privateKey2 } = require('./secrets.json');
 
 module.exports = { 
   networks: { 
@@ -15,8 +15,12 @@ module.exports = {
     },
     kovan: {
       url: `https://kovan.infura.io/v3/${INFURA_API_KEY}`, 
-      accounts: [privateKey1, privateKey2]
+      accounts: [KovanAcc1] //, privateKey1, privateKey2]
     },
+    bsc: {
+      url: `https://data-seed-prebsc-1-s1.binance.org:8545/`,
+      accounts: [privateKey1, privateKey2]
+    }
   },
   solidity: "0.5.16"
 };
